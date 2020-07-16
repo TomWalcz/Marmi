@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 
 
 def scalex(x, c):
@@ -35,6 +35,7 @@ def scaler(num, numscale):
     scale = numscale/num
     return(scale)
 
+
 def printdata(xprint, yprint, zprint):
     x = (xprint.get())
     y = (yprint.get())
@@ -42,37 +43,37 @@ def printdata(xprint, yprint, zprint):
     print(x)
     print(y)
     print(z)
-   
+    return x
 
 
 if __name__ == '__main__':
 
-    root = Tk()
+    root = tk.Tk()
     root.geometry("400x200")
 
-    titleframe = Frame(root)
-    titleframe.pack(side = TOP)
+    titleframe = tk.Frame(root)
+    titleframe.pack(side=tk.TOP)
 
-    frame = Frame(root)
+    frame = tk.Frame(root)
     frame.pack()
 
-    CheckVar1 = BooleanVar()
-    x = DoubleVar()
-    y = DoubleVar()
-    z = DoubleVar()
-    labeltitle = Label(titleframe, text = "Konfigurator Umywalek", relief=FLAT, anchor=CENTER, font = "Helvetica 16 bold italic").grid(row=0)
-    labelx = Label(frame, text = "Podaj X" ).grid(row=1)
-    labely = Label(frame, text = "Podaj Y" ).grid(row=2)
-    labelz = Label(frame, text = "Podaj Z" ).grid(row=3)
-    labelc = Label(frame, text = "Cieńkoblaciastość").grid(row=4)
-    entryx = Entry(frame, textvariable=x, width = 20)
+    CheckVar1 = tk.BooleanVar()
+    x = tk.DoubleVar()
+    y = tk.DoubleVar()
+    z = tk.DoubleVar()
+    labeltitle = tk.Label(titleframe, text="Konfigurator Umywalek", relief=tk.FLAT, anchor=tk.CENTER, font="Helvetica 16 bold italic").grid(row=0)
+    labelx = tk.Label(frame, text="Podaj X").grid(row=1)
+    labely = tk.Label(frame, text="Podaj Y").grid(row=2)
+    labelz = tk.Label(frame, text="Podaj Z").grid(row=3)
+    labelc = tk.Label(frame, text="Cieńkoblaciastość").grid(row=4)
+    entryx = tk.Entry(frame, textvariable=x, width=20)
     entryx.grid(row=1, column=1)
-    entryy = Entry(frame, textvariable=y, width = 20)
+    entryy = tk.Entry(frame, textvariable=y, width=20)
     entryy.grid(row=2, column=1)
-    entryz = Entry(frame, textvariable=z, width = 20)
+    entryz = tk.Entry(frame, textvariable=z, width=20)
     entryz.grid(row=3, column=1)
-    c = Checkbutton(frame, variable=CheckVar1)
+    c = tk.Checkbutton(frame, variable=CheckVar1)
     c.grid(row=4, column=1)
-    submit = Button(frame, text = "Submit", width = 20, command = lambda: printdata(x,y,z)).grid(row=5)
+    submit = tk.Button(frame, text="Submit", width=20, command=lambda: printdata(x, y, z)).grid(row=5)
 
     root.mainloop()
