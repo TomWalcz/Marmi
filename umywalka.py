@@ -1,49 +1,65 @@
 import tkinter as tk
 
+x = 0.0
+y = 0.0
+z = 0.0
 
-def scalex(x, c):
+
+def scalex(xraw, c):
+    global x
+    xraw = (xraw.get())
     if c is True:
-        if x <= 1000:
-            x = x+1
-        elif x > 1000 and x <= 1410:
-            x = x+2
-        elif x > 1410 and x <= 1800:
-            x = x+3
+        print(True)
+        if xraw <= 1000:
+            xraw = xraw+1
+        elif xraw > 1000 and xraw <= 1410:
+            xraw = xraw+2
+        elif xraw > 1410 and xraw <= 1800:
+            xraw = xraw+3
     elif c is False:
-        if x <= 610:
-            x = x+1
-        elif x > 610 and x <= 1000:
-            x = x+2
-        elif x > 1000 and x <= 1411:
-            x = x+3
-        elif x > 1411 and x <= 1800:
-            x = x+4
-    return (x)
+        print(False)
+        if xraw <= 610:
+            xraw = xraw+1
+        elif xraw > 610 and xraw <= 1000:
+            xraw = xraw+2
+        elif xraw > 1000 and xraw <= 1411:
+            xraw = xraw+3
+        elif xraw > 1411 and xraw <= 1800:
+            xraw = xraw+4
+    x = xraw
+    return(x)
 
 
-def scaley(y):
-    y = (y*1.007) + 1
+def scaley(yraw):
+    global y
+    yraw = (yraw.get())
+    y = (yraw*1.007) + 1
     return (y)
 
 
-def scalez(z):
-    z = z*1.007
+def scalez(zraw):
+    global z
+    zraw = (zraw.get())
+    z = zraw*1.007
     return (z)
 
 
-def scaler(num, numscale):
-    scale = numscale/num
-    return(scale)
+def scaler(xraw, c, yraw, zraw):
+    print(xraw.get(), yraw.get(), zraw.get())
+    print(scalex(xraw, c))
+    print(scaley(yraw))
+    print(scalez(zraw))
+    return()
 
 
 def printdata(xprint, yprint, zprint):
-    x = (xprint.get())
-    y = (yprint.get())
-    z = (zprint.get())
-    print(x)
-    print(y)
-    print(z)
-    return x
+    # x = (xprint.get())
+    # y = (yprint.get())
+    # z = (zprint.get())
+    # print(x)
+    # print(y)
+    # print(z)
+    return ()
 
 
 if __name__ == '__main__':
@@ -58,22 +74,22 @@ if __name__ == '__main__':
     frame.pack()
 
     CheckVar1 = tk.BooleanVar()
-    x = tk.DoubleVar()
-    y = tk.DoubleVar()
-    z = tk.DoubleVar()
+    xraw = tk.DoubleVar()
+    yraw = tk.DoubleVar()
+    zraw = tk.DoubleVar()
     labeltitle = tk.Label(titleframe, text="Konfigurator Umywalek", relief=tk.FLAT, anchor=tk.CENTER, font="Helvetica 16 bold italic").grid(row=0)
     labelx = tk.Label(frame, text="Podaj X").grid(row=1)
     labely = tk.Label(frame, text="Podaj Y").grid(row=2)
     labelz = tk.Label(frame, text="Podaj Z").grid(row=3)
     labelc = tk.Label(frame, text="Cieńkoblaciastość").grid(row=4)
-    entryx = tk.Entry(frame, textvariable=x, width=20)
+    entryx = tk.Entry(frame, textvariable=xraw, width=20)
     entryx.grid(row=1, column=1)
-    entryy = tk.Entry(frame, textvariable=y, width=20)
+    entryy = tk.Entry(frame, textvariable=yraw, width=20)
     entryy.grid(row=2, column=1)
-    entryz = tk.Entry(frame, textvariable=z, width=20)
+    entryz = tk.Entry(frame, textvariable=zraw, width=20)
     entryz.grid(row=3, column=1)
     c = tk.Checkbutton(frame, variable=CheckVar1)
     c.grid(row=4, column=1)
-    submit = tk.Button(frame, text="Submit", width=20, command=lambda: printdata(x, y, z)).grid(row=5)
-
+    # submit = tk.Button(frame, text="Submit", width=20, command=lambda: [scalex(xraw,CheckVar1.get()), scaley(yraw), scalez(zraw)]).grid(row=5)
+    submit = tk.Button(frame, text="Submit", width=20, command=lambda: [scaler(xraw, CheckVar1.get(), yraw, zraw)]).grid(row=5)
     root.mainloop()
