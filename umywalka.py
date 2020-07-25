@@ -1,9 +1,11 @@
 import tkinter as tk
+import subprocess
+
+
 
 x = 0.0
 y = 0.0
 z = 0.0
-
 
 def scalex(xraw, c):
     global x
@@ -44,22 +46,14 @@ def scalez(zraw):
     return (z)
 
 
-def scaler(xraw, c, yraw, zraw):
-    print(xraw.get(), yraw.get(), zraw.get())
+def scaler(raw, *c, yraw, zraw):
+    # print(xraw.get(), yraw.get(), zraw.get())
     print(scalex(xraw, c))
     print(scaley(yraw))
     print(scalez(zraw))
+    xscaler = scalex(xraw, c)/xraw.get()
+    print(xscaler)
     return()
-
-
-def printdata(xprint, yprint, zprint):
-    # x = (xprint.get())
-    # y = (yprint.get())
-    # z = (zprint.get())
-    # print(x)
-    # print(y)
-    # print(z)
-    return ()
 
 
 if __name__ == '__main__':
@@ -91,5 +85,9 @@ if __name__ == '__main__':
     c = tk.Checkbutton(frame, variable=CheckVar1)
     c.grid(row=4, column=1)
     # submit = tk.Button(frame, text="Submit", width=20, command=lambda: [scalex(xraw,CheckVar1.get()), scaley(yraw), scalez(zraw)]).grid(row=5)
-    submit = tk.Button(frame, text="Submit", width=20, command=lambda: [scaler(xraw, CheckVar1.get(), yraw, zraw)]).grid(row=5)
+    submit = tk.Button(frame, text="Submit", width=20, command=lambda: [scaler(xraw, CheckVar1.get(), yraw, zraw)]).grid(row=5, columnspan =2)
+
+
+    text_box = tk.Label(frame, text = "txt")
+    text_box.grid(row = 8, column = 0)
     root.mainloop()
